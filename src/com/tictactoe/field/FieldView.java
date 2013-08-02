@@ -6,14 +6,14 @@ package com.tictactoe.field;
  * Класс view в MVC
  */
 public class FieldView {
-    private static final int FIELD_SIZE = Field.FIELD_SIZE;
+    //private static final int FIELD_SIZE = Field.FIELD_SIZE;
 
     public void showField(Field field){
         System.out.println();
-        for (int i = 0; i < FIELD_SIZE; i++)
+        for (int i = 0; i < field.getFieldSize(); i++)
         {
-            for (int j = 0; j < FIELD_SIZE; j++)
-                System.out.print("[" + field.getCell(i * FIELD_SIZE + j).getState() + "]");
+            for (int j = 0; j < field.getFieldSize(); j++)
+                System.out.print("[" + field.getCell(i * field.getFieldSize() + j).getState() + "]");
             System.out.println();
         }
     }

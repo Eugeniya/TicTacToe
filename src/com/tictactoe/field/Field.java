@@ -7,13 +7,28 @@ package com.tictactoe.field;
  * Является model в MVC
  */
 public class Field {
-    public static final int FIELD_SIZE = 4;
+    public static final int MINIMUM_FIELD_SIZE = 3;
+    public static final int MAXIMUM_FIELD_SIZE = 20;
+    public static final int DEFAULT_FIELD_SIZE = 3;
+    private final int fieldSize;
     private Cell[] cells;
 
     public Field(){
-        cells = new Cell[FIELD_SIZE * FIELD_SIZE];
+        this(DEFAULT_FIELD_SIZE);
+    }
+
+    public Field(int fieldSize) {
+        if(fieldSize < MINIMUM_FIELD_SIZE || fieldSize > MAXIMUM_FIELD_SIZE)
+            throw new RuntimeException("Illegal value of field's size.");
+
+        this.fieldSize = fieldSize;
+        cells = new Cell[fieldSize * fieldSize];
         for(int i = 0 ; i < cells.length; i++)
             cells[i] = new Cell();
+    }
+
+    public int getFieldSize() {
+        return fieldSize;
     }
 
     public Cell getCell(int i){

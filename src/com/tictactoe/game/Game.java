@@ -1,9 +1,7 @@
 package com.tictactoe.game;
-//import com.sun.media.jfxmedia.events.PlayerStateEvent;
+import com.sun.media.jfxmedia.events.PlayerStateEvent;
 import com.tictactoe.human.*;
 import com.tictactoe.field.*;
-
-import java.util.Scanner;
 
 //перечисление сотояний игры
 /*enum GameState {
@@ -24,19 +22,15 @@ public class Game {
     public Game() {
         crossesPlayer   = new Player("Player 1");
         noughtsPlayer   = new Player("Player 2");
-//        field           = new Field();
-//        fieldView       = new FieldView();
-//        fieldController = new FieldController(field,fieldView);
+        field           = new Field();
+        fieldView       = new FieldView();
+        fieldController = new FieldController(field,fieldView);
         //fieldController.updateField();
     }
 
     //функция начала игры
     public void start(){
-        System.out.println("Enter the size of the field (3 by default).");
-        System.out.println("Enter a value between 3 and 10");
-
         initialization();
-        showField();
         int numberOfCell = 0;
 
         System.out.println();
@@ -50,7 +44,7 @@ public class Game {
 
         //делаем количество шагов равное количеству ячеек, если в процессе
         //один из игроков выигрывает checkField() - возвращает истину, игра прекращается
-        for(int i = 0; i < field.getFieldSize() * field.getFieldSize(); i++)
+        for(int i = 0; i < Field.FIELD_SIZE * Field.FIELD_SIZE; i++)
         {
             //четные ходы играет Крестик, нечетные - Нолик
             if(i%2 == 0)
@@ -97,42 +91,12 @@ public class Game {
             System.out.println("Draw!");
     }
 
-    private void initialization(){
-        Scanner sc       = new Scanner(System.in);
-        boolean flag     = false;
-        int sizeOfField  = 0;
-
-        //проверка ввода корректного размера поля
-        while (!flag)
-        {
-            while (!sc.hasNextInt())
-            {
-                System.out.println();
-                System.out.println("Please re-enter");
-                sc.nextLine();
-            }
-            sizeOfField = sc.nextInt();
-
-            if(sizeOfField < Field.MINIMUM_FIELD_SIZE || sizeOfField > Field.MAXIMUM_FIELD_SIZE)
-            {
-                System.out.println("Illegal value of field's size.");
-                continue;
-            }
-
-            flag = true;
-        }
-
-        field           = new Field(sizeOfField);
-        fieldView       = new FieldView();
-        fieldController = new FieldController(field,fieldView);
-    }
-
     //нумеруем ячейки, при этом данные в ячейках не изменяются
-    private void showField(){
-        for (int i = 0; i < field.getFieldSize(); i++)
+    private void initialization(){
+        for (int i = 0; i < field.FIELD_SIZE; i++)
         {
-            for (int j = 1; j <=  field.getFieldSize(); j++)
-                System.out.print("[" + (i * field.getFieldSize() + j)  + "]");
+            for (int j = 1; j <=  field.FIELD_SIZE; j++)
+                System.out.print("[" + (i * Field.FIELD_SIZE + j)  + "]");
             System.out.println();
         }
     }

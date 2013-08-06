@@ -14,42 +14,28 @@ public class Player {
     private PlayerState state;
 
     public Player(){
-        name = "Player";
-        state = PlayerState.playing;
+        this("Player");
     }
 
     public Player(String name) {
         this.name = name;
+        state = PlayerState.playing;
     }
 
     //функция, в которой игрок делает ход, возвращает номер ячейки   numberOfCell
     public int play(){
         Scanner sc       = new Scanner(System.in);
         int numberOfCell = 0;
-        boolean flag = false;
 
         System.out.println();
         System.out.println(this.name + "! Enter number of cell");
 
         //проверка ввода корректного номера ячейки
-        while (!flag)
-        {
-            //проверка на ввод числа
-            while (!sc.hasNextInt()) {
-                System.out.println("Please re-enter");
-                sc.nextLine();
-            }
-            numberOfCell = sc.nextInt();
-
-            //проверка на ввод допустимого значения ячейки
-            if(numberOfCell < 1 || numberOfCell > Field.FIELD_SIZE * Field.FIELD_SIZE)
-            {
-                System.out.println("Please re-enter");
-                continue;
-            }
-
-            flag = true;
+        while (!sc.hasNextInt()) {
+            System.out.println("Please re-enter");
+            sc.nextLine();
         }
+        numberOfCell = sc.nextInt();
 
         System.out.println("Your choice of " + numberOfCell);
         return numberOfCell;

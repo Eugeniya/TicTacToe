@@ -1,5 +1,4 @@
 package com.tictactoe.game;
-//import com.sun.media.jfxmedia.events.PlayerStateEvent;
 import com.tictactoe.human.*;
 import com.tictactoe.field.*;
 
@@ -14,16 +13,16 @@ import java.util.Scanner;
  * Time: 18:01
  * Класс, реализующий логику игры
  */
-public class Game {
+public class Local {
     private Player noughtsPlayer;
     private Player crossesPlayer;
     private Field field;
     private FieldView fieldView;
     private FieldController fieldController;
 
-    public Game() {
-        crossesPlayer   = new Player("Player 1");
-        noughtsPlayer   = new Player("Player 2");
+    public Local() {
+        crossesPlayer   = new Player("Crosses");
+        noughtsPlayer   = new Player("Noughts");
 //        field           = new Field();
 //        fieldView       = new FieldView();
 //        fieldController = new FieldController(field,fieldView);
@@ -37,7 +36,7 @@ public class Game {
 
         initialization();
         showField();
-        int numberOfCell = 0;
+        //int numberOfCell = 0;
 
         System.out.println();
         System.out.println("Player " + crossesPlayer.getName() + " places a cross.");
@@ -55,38 +54,16 @@ public class Game {
             //четные ходы играет Крестик, нечетные - Нолик
             if(i%2 == 0)
             {
-                numberOfCell = crossesPlayer.play();
-                while (!fieldController.checkCell(numberOfCell - 1))
+                if(makeMove(crossesPlayer, 'X'))
                 {
-                    System.out.println();
-                    System.out.println("Enter the number of empty cells!");
-                    numberOfCell = crossesPlayer.play();
-                }
-
-                fieldController.setCellState(numberOfCell - 1, 'X');
-                fieldController.updateField();
-                if (fieldController.checkField('X'))
-                {
-                    crossesPlayer.setState(PlayerState.winner);
                     noughtsPlayer.setState(PlayerState.loser);
                     break;
                 }
             }
             else
             {
-                numberOfCell = noughtsPlayer.play();
-                while (!fieldController.checkCell(numberOfCell - 1))
+                if(makeMove(noughtsPlayer, '0'))
                 {
-                    System.out.println();
-                    System.out.println("Enter the number of empty cells!");
-                    numberOfCell = noughtsPlayer.play();
-                }
-
-                fieldController.setCellState(numberOfCell - 1, '0');
-                fieldController.updateField();
-                if (fieldController.checkField('0'))
-                {
-                    noughtsPlayer.setState(PlayerState.winner);
                     crossesPlayer.setState(PlayerState.loser);
                     break;
                 }
@@ -95,6 +72,30 @@ public class Game {
 
         if(crossesPlayer.getState() == PlayerState.playing)
             System.out.println("Draw!");
+    }
+
+    //функция хода игрока
+    // true если в результате хода игрок выигарл
+    // false если в результате хода игрок проиграл
+    private boolean makeMove(Player player, char symbol){
+        int numberOfCell = 0;
+        numberOfCell = player.play();
+        while (!fieldController.checkCell(numberOfCell - 1))
+        {
+            System.out.println();
+            System.out.println("Enter the number of empty cells!");
+            numberOfCell = player.play();
+        }
+
+        fieldController.setCellState(numberOfCell - 1, symbol);
+        fieldController.updateField();
+        if (fieldController.checkField(symbol))
+        {
+            player.setState(PlayerState.winner);
+            return true;
+        }
+
+        return false;
     }
 
     private void initialization(){

@@ -5,7 +5,7 @@ import com.tictactoe.game.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
+        Local game = new Local();
         game.start();
     }
 }

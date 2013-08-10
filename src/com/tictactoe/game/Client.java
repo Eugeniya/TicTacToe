@@ -5,9 +5,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import com.tictactoe.human.*;
-import com.tictactoe.field.*;
-
 /**
  * Date: 05.08.13
  * Time: 15:07

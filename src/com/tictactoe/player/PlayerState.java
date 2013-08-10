@@ -1,4 +1,4 @@
-package com.tictactoe.human;
+package com.tictactoe.player;
 
 /**
  * Date: 29.07.13

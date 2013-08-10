@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import com.tictactoe.human.*;
+import com.tictactoe.player.*;
 import com.tictactoe.field.*;
 
 
@@ -15,8 +15,8 @@ import com.tictactoe.field.*;
  * Time: 14:55
  */
 public class Server {
-    private Player noughtsPlayer;
-    private Player crossesPlayer;
+    private Human noughtsPlayer;
+    private Human crossesPlayer;
     private Field field;
     private FieldView fieldView;
     private FieldController fieldController;

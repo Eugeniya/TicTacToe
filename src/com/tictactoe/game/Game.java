@@ -12,10 +12,7 @@ import java.util.Scanner;
  * Time: 17:05
  */
 public class Game {
-/*
-    private Human noughtsPlayer;
-    private Human crossesPlayer;
-*/
+
     private Field field;
     private FieldView fieldView;
     private FieldController fieldController;
@@ -72,6 +69,8 @@ public class Game {
         field           = new Field(sizeOfField);
         fieldView       = new FieldView();
         fieldController = new FieldController(field,fieldView);
+
+        //sc.close();
     }
 
     //нумеруем ячейки, при этом данные в ячейках не изменяются

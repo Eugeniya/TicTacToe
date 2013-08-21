@@ -18,8 +18,7 @@ public class Local extends Game{
     private Human crossesPlayer;
 
     public Local() {
-        crossesPlayer   = new Human("Сrosses");
-        //noughtsPlayer   = new Human("Noughts");
+        crossesPlayer   = new Human("Crosses");
     }
 
     //функция начала игры
@@ -106,6 +105,8 @@ public class Local extends Game{
 
         if(crossesPlayer.getState() == PlayerState.playing)
             System.out.println("Draw!");
+
+        //sc.close();
     }
 
     //функция хода игрока

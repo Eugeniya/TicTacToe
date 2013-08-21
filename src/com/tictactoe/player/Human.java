@@ -43,6 +43,7 @@ public class Human extends Player{
             if(fieldController.checkCell(numberOfCell - 1))
             {
                 System.out.println("Your choice of " + numberOfCell);
+                //sc.close();
                 return numberOfCell;
             }
 

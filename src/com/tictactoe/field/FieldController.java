@@ -201,4 +201,19 @@ public class FieldController {
 
         return 0;
     }
+
+    public String toString(){
+        return getClass().getName();
+    }
+
+    //функция отмены хода
+    public void cancelMove(){
+        int index =  model.history.size() - 1;
+        model.getCell(index).setState(Cell.DEFAULT_CELL_VALUE);
+        model.history.remove(index);
+
+        index --;
+        model.getCell(index).setState(Cell.DEFAULT_CELL_VALUE);
+        model.history.remove(index);
+    }
 }

@@ -6,7 +6,7 @@ import com.tictactoe.field.FieldController;
  * Date: 09.08.13
  * Time: 15:31
  */
-public class Player {
+public abstract class Player {
     private String name;
     private PlayerState state;
 
@@ -39,7 +39,9 @@ public class Player {
         return state;
     }
 
-    public int play(FieldController fieldController, char symbol){
-        return 0;
+    public abstract int play(FieldController fieldController, char symbol);
+
+    public String toString(){
+        return getClass().getName()  + "[name=" + name + ",state=" +  state + "]";
     }
 }

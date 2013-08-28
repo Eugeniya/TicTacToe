@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Game game;
+        //game = new Game();
+
         int choice = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("~~~~~~ Tic Tac Toe ~~~~~~");
@@ -83,8 +85,6 @@ public class Main {
             }
         }
 
-        //sc.reset();
-        //sc.close();
         game.start();
 
 

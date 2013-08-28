@@ -16,6 +16,7 @@ import java.util.Scanner;
 /**
  * Date: 05.08.13
  * Time: 15:07
+ * Клиентский экземпляр сетвой игры игры
  */
 public class Client extends Game{
     private Human noughtsPlayer;
@@ -134,23 +135,8 @@ public class Client extends Game{
         this.setFieldController( new FieldController(getField(), getFieldView()));
     }
 
-    //функция хода игрока
-    // true если в результате хода игрок выигарл
-    // false если в результате хода игрок проиграл
-/*    private boolean makeMove(Player player, char symbol){
-        int numberOfCell = 0;
-
-        numberOfCell = player.play(getFieldController() , symbol);
-
-        getFieldController().setCellState(numberOfCell - 1, symbol);
-        getFieldController().updateField();
-        if (getFieldController().checkField(symbol))
-        {
-            player.setState(PlayerState.winner);
-            return true;
-        }
-
-        return false;
-    }*/
+    public String toString(){
+        return getClass().getName();
+    }
 
 }

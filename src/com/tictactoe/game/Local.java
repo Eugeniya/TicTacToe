@@ -1,6 +1,5 @@
 package com.tictactoe.game;
 import com.tictactoe.player.*;
-import com.tictactoe.field.*;
 
 import java.util.Scanner;
 
@@ -82,12 +81,32 @@ public class Local extends Game{
 
         //делаем количество шагов равное количеству ячеек, если в процессе
         //один из игроков выигрывает checkField() - возвращает истину, игра прекращается
+        boolean choiceMove = false;
+        String historyChoice = "";
         for(int i = 0; i < getField().getFieldSize() *  getField().getFieldSize(); i++)
         {
             //четные ходы играет Крестик, нечетные - Нолик
             if(i%2 == 0)
             {
-                if(makeMove(crossesPlayer, 'X'))
+
+
+                //если игра с компьютером, то возможность возврата хода
+                if(noughtsPlayer.getClass() == Computer.class && i != 0)
+                {
+                    System.out.println();
+                    System.out.println("Cancel the move? (Y / Any key)");
+                    historyChoice = sc.next();
+                    if(historyChoice.equalsIgnoreCase("y"))
+                    {
+                        getFieldController().cancelMove();
+                        getFieldView().showField(getField());
+                        i -= 3;
+                        continue;
+                    }
+                }
+
+                choiceMove = makeMove(crossesPlayer, 'X', i);
+                if(choiceMove)
                 {
                     noughtsPlayer.setState(PlayerState.loser);
                     break;
@@ -95,7 +114,7 @@ public class Local extends Game{
             }
             else
             {
-                if(makeMove(noughtsPlayer, '0'))
+                if(makeMove(noughtsPlayer, '0', i))
                 {
                     crossesPlayer.setState(PlayerState.loser);
                     break;
@@ -103,22 +122,30 @@ public class Local extends Game{
             }
         }
 
+        System.out.println();
+        System.out.println("Show the history of moves? (Y / Any key)");
+        historyChoice = sc.next();
+        if(historyChoice.equalsIgnoreCase("y"))
+            getFieldView().showHistory(getField());
+
+
         if(crossesPlayer.getState() == PlayerState.playing)
             System.out.println("Draw!");
 
-        //sc.close();
     }
 
     //функция хода игрока
     // true если в результате хода игрок выигарл
     // false если в результате хода игрок проиграл
-    private boolean makeMove(Player player, char symbol){
+    private boolean makeMove(Player player, char symbol, int numberOfMove){
         int numberOfCell = 0;
 
         numberOfCell = player.play(getFieldController() , symbol);
 
         getFieldController().setCellState(numberOfCell - 1, symbol);
         getFieldController().updateField();
+        getField().history.add(numberOfMove, numberOfCell);
+
         if (getFieldController().checkField(symbol))
         {
             player.setState(PlayerState.winner);
@@ -126,5 +153,9 @@ public class Local extends Game{
         }
 
         return false;
+    }
+
+    public String toString(){
+        return getClass().getName();
     }
 }

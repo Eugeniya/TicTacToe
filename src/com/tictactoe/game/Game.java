@@ -11,7 +11,7 @@ import java.util.Scanner;
  * Date: 09.08.13
  * Time: 17:05
  */
-public class Game {
+public abstract class Game {
 
     private Field field;
     private FieldView fieldView;
@@ -83,5 +83,9 @@ public class Game {
         }
     }
 
-    public void start(){}
+    public abstract void start();
+
+    public String toString(){
+        return getClass().getName();
+    }
 }

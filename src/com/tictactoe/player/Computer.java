@@ -22,4 +22,8 @@ public class Computer extends Player {
         System.out.println("Computer chose " + numberOfCell);
         return numberOfCell;
     }
+
+    public String toString(){
+        return super.toString();
+    }
 }

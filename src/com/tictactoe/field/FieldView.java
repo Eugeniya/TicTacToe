@@ -17,4 +17,21 @@ public class FieldView {
             System.out.println();
         }
     }
+
+
+    //отображаем историю ходов
+    public void showHistory(Field field){
+        System.out.println();
+        for(int i = 0; i < field.history.size(); i++)
+        {
+            if(i % 2 == 0)
+                System.out.println("Move #" + i + ": Player crosses  choice " + field.history.get(i));
+            else
+                System.out.println("Move #" + i + ": Player noughts choice "  + field.history.get(i));
+        }
+    }
+
+    public String toString(){
+        return getClass().getName();
+    }
 }

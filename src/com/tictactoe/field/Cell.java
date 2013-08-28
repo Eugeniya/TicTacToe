@@ -7,7 +7,7 @@ package com.tictactoe.field;
  * представялет собой ячейку игрового поля
  */
 public class Cell {
-    private static final char DEFAULT_CELL_VALUE = ' ';
+    public static final char DEFAULT_CELL_VALUE = ' ';
     private char state;         //состояние клетки "Х" - крестик, "0" - нолик, " " - не занята
 
     public Cell(){
@@ -23,5 +23,9 @@ public class Cell {
 
     public char getState(){
         return state;
+    }
+
+    public String toString(){
+        return getClass().getName() + "[name=" + state + "]";
     }
 }

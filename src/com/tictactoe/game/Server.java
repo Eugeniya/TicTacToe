@@ -14,6 +14,7 @@ import com.tictactoe.field.*;
 /**
  * Date: 05.08.13
  * Time: 14:55
+ * серверная часть сетевой игры
  */
 public class Server extends Game{
     private Human noughtsPlayer;
@@ -159,6 +160,10 @@ public class Server extends Game{
         }
 
         return false;
+    }
+
+    public String toString(){
+        return getClass().getName();
     }
 
 }

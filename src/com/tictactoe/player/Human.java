@@ -52,4 +52,8 @@ public class Human extends Player{
 
         } while (true);
     }
+
+    public String toString(){
+        return super.toString();
+    }
 }
